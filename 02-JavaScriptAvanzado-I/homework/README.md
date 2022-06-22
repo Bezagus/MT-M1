@@ -33,8 +33,8 @@ console.log(x);//
 
 ```javascript
 console.log(bar);//undefined
-console.log(baz);//undefined
-foo();//Hola!
+console.log(baz);//error!
+foo();//No sale
 function foo() { console.log('Hola!'); }
 var bar = 1;
 baz = 2;
