@@ -20,7 +20,6 @@ function counter() {
   otroContador()      // 3
    */
 
-
 /* (function(){
   function nuevoContador(valor){
   return function(valor2){
