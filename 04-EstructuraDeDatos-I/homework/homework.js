@@ -1,4 +1,4 @@
-'use strict'
+ 'use strict'
 
 /*
 Definir las funciones recursivas nFactorial y nFibonacci.
@@ -15,9 +15,25 @@ Como ejercicio adicional y completamente opcional, al terminar de resolver este 
 */
 
 function nFactorial(n) {
+  if(n<2 && n>-1){
+    return 1
+  }
+  else{
+    return n * nFactorial(n-1) //
+  }
 }
 
 function nFibonacci(n) {
+    if(n==0){
+      return 0
+    }
+    else if(n==1){
+      return 1
+    }
+    else{
+      return nFibonacci(n-1) + nFibonacci(n-2)
+    }
+
 }
 
 /*
@@ -30,6 +46,25 @@ Pueden utilizar class o función constructora.
 */
 
 function Queue() {
+  function cola(){
+    this.arr=[];
+  }
+  
+  cola.prototype.enqueue = function(element){
+    this.arr.push(element)
+  }
+  cola.prototype.dequeue = function(element){
+    if(this.arr.length==0){
+      return 'undefined'
+    }
+    else{
+      return (this.arr.unshift(element))
+    }
+  }
+  cola.prototype.size = function(element){
+    return this.arr.length
+  }
+
 
 }
 
