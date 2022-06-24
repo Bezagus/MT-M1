@@ -46,27 +46,23 @@ Pueden utilizar class o función constructora.
 */
 
 function Queue() {
-  function cola(){
-    this.arr=[];
-  }
+   this.arr=[];
+}
   
-  cola.prototype.enqueue = function(element){
+  Queue.prototype.enqueue = function(element){
     this.arr.push(element)
   }
-  cola.prototype.dequeue = function(element){
-    if(this.arr.length==0){
-      return 'undefined'
+  Queue.prototype.dequeue = function(){
+    if(this.arr.length !==0){
+      return (this.arr.shift())
     }
     else{
-      return (this.arr.unshift(element))
+      return undefined
     }
   }
-  cola.prototype.size = function(element){
+  Queue.prototype.size = function(){
     return this.arr.length
   }
-
-
-}
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
