@@ -25,7 +25,7 @@ LinkedList.prototype.add = function(value){
     let node= new Node(value)
     let current= this.head;
 
-    if(!current){
+    if(!this.head){
       this.head=node;
       this._length++;
       return node
@@ -52,6 +52,10 @@ LinkedList.prototype.remove = function(){
     this.head=null;
     return result2
   }
+
+ /*  while(current.next.next){
+    current= current.next
+  } */
   for(let i=1 ; i<largo ; i++ ){
     current= current.next;
   }
@@ -119,10 +123,45 @@ Ejemplo: supongamos que quiero guardar {instructora: 'Ani'} en la tabla. Primero
 */
 
 function HashTable() {
-  this.buckets= {};
   this.numBuckets=35;
+  this.buckets = [];
 }
-HashTable.prototype.hash= function(input){
+HashTable.prototype.hash=function(key){
+  let sum =0;
+  for(let i=0; i<key.length;i++){
+    sum = sum + key.charCodeAt(i);
+  }
+  return sum % this.numBuckets;
+}
+HashTable.prototype.set = function(key, value){
+  if(typeof key !== 'string'){
+    throw new TypeError ('Keys must be strings');
+  }
+  let bucketNumber= this.hash(key);
+  if(!this.buckets[bucketNumber]){
+    this.buckets[bucketNumber]={};
+  }
+  this.buckets[bucketNumber][key]= value;
+}
+HashTable.prototype.get = function(key){
+  let bucketNumber= this.hash(key);
+  return this.buckets[bucketNumber][key];
+}
+HashTable.prototype.haskey = function(key){
+  let bucketNumber= this.hash(key);
+  return !!this.buckets[bucketNumber][key];
+}
+
+
+
+
+
+
+
+
+
+
+/* HashTable.prototype.hash= function(input){
   var indice=0;
   for(let i=0 ; i<input.length ; i++){
     indice = indice = input.chaCodeAt(i);
@@ -152,7 +191,7 @@ HashTable.prototype.haskey= function(key){
   else{
     return false
   }
-}
+} */
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
