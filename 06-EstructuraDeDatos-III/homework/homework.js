@@ -46,66 +46,64 @@ BinarySearchTree.prototype.insert = function(value){
   }
 };
 BinarySearchTree.prototype.contains = function(value){
-  if(value === this.value){
+  if(value === this.value){//si el valor es igual al this,value
     return true;
   }
-  if(value > this.value){
-    if(!this.right){
+  if(value > this.value){//si el value es mayor a this.value
+    if(!this.right){//si no tiene derecha
       return false;
     }
-    return this.right.contains(value)
+    return this.right.contains(value)//si tiene derecha se aplica resursividad
 
-  }else{
-    if(!this.left){
+  }else{//si es menro el value a this.value
+    if(!this.left){//si no tiene izquiera
       return false
     }
-    return this.left.contains(value)
+    return this.left.contains(value)//si tiene izquierda se aplica la recursividad
 
   }
 };
 BinarySearchTree.prototype.depthFirstForEach = function(cb, order){
-  if(order === 'in-order' || !order){
-    if(this.left){
-      this.left.depthFirstForEach(cb, order);
+  if(order === 'in-order' || !order){//si order es in-order
+    if(this.left){//si tiene this.left
+      this.left.depthFirstForEach(cb, order);//entra y le aplica resursividad
     }
-    cb(this.value);
-    if(this.right){
-      this.right.depthFirstForEach(cb,order);
+    cb(this.value);//aplica el callback
+    if(this.right){//si tiene algo a la derecha
+      this.right.depthFirstForEach(cb,order);//entra y le aplica recursividad
     }
   }
-  else if(order === 'pre-order'){
-    cb(this.value);
+  else if(order === 'pre-order'){//si order es pro0order
+    cb(this.value);// aplica el callback
 
-    if(this.left){
-      this.left.depthFirstForEach(cb, order);
+    if(this.left){//si tiene izquierda
+      this.left.depthFirstForEach(cb, order);//entra y aplica recursividad
     }
-    if(this.right){
-      this.right.depthFirstForEach(cb,order);
+    if(this.right){//si tiene derecha
+      this.right.depthFirstForEach(cb,order);//entra a la derecha y aplca recursividad
     }
-  }else{
-    if(this.left){
-      this.left.depthFirstForEach(cb, order);
+  }else{//sino
+    if(this.left){//si tiene izquierda
+      this.left.depthFirstForEach(cb, order);//entra y aplica recursividad
     }
-    if(this.right){
-      this.right.depthFirstForEach(cb,order);
+    if(this.right){//si tiene derecha
+      this.right.depthFirstForEach(cb,order);//entra y aplica recursividad
     }
-    cb(this.value);
+    cb(this.value);//aplica el callback
   }
 }
 
-BinarySearchTree.prototype.breadthFirstForEach = function(cb, arr){
-  if(!arr){
-     var arr = [];
-  }
+BinarySearchTree.prototype.breadthFirstForEach = function(cb, arr= []){
   cb(this.value)
-  if(this.left){
-    arr.push(this.left)
+  if(this.left){//si tiene una izquierda
+    arr.push(this.left)//pushea this.left
   }
-  if(this.right){
-    arr.push(this.right)
+  if(this.right){//si tiene derecha
+    arr.push(this.right)//pushe this.right
   }
-  if(arr.length){
-  arr.shift().breadthFirstForEach(cb, arr);
+  let nextNode = arr.shift();// pusheao el primer elemento [20,23,34,65,...]
+  if(nextNode){//si tienen algo nextNode
+    nextNode.breadthFirstForEach(cb, arr)//si tiene llama a la recursion 
   }
 };
 
